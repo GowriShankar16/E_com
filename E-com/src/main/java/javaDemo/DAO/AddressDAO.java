@@ -12,20 +12,21 @@ public class AddressDAO {
 	Configuration cfg = new Configuration().configure();
 	ServiceRegistry register = new ServiceRegistryBuilder().applySettings(cfg.getProperties()).buildServiceRegistry();
 	SessionFactory sf = cfg.buildSessionFactory(register);
+	
 	public void save(Address address) {
 		Session session = sf.openSession();
         Transaction transaction = session.beginTransaction(); 
         session.save(address);
         transaction.commit();
         session.close();
-        
-	}
-    public Address find(Address address) {
+        }
+	
+    public  Address update(Address address) {
        Session session = sf.openSession();
        Transaction transaction = session.beginTransaction(); 
-       Address address1 =(Address)session.beginTransaction();
-        transaction.commit();
-        session.close();
-        return address;
-	}
+       session.update(address);
+       transaction.commit();
+       session.close();
+       return address;
+	   }
 }

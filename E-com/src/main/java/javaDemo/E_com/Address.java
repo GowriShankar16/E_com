@@ -42,7 +42,7 @@ public class Address {
 	}
 	
 	public Address( String addressline1, String addressline2, String city, String state, String landmark,
-			String pincode, User user) {
+			String pincode) {
 		super();
 		this.id = id;
 		this.addressline1 = addressline1;

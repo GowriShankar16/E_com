@@ -11,6 +11,7 @@ public class UserDAO {
 	     Configuration cfg = new Configuration().configure();
 	     ServiceRegistry register = new ServiceRegistryBuilder().applySettings(cfg.getProperties()).buildServiceRegistry();
 	     SessionFactory sf = cfg.buildSessionFactory(register);
+	     
 	public void save(User user) {
 		 Session session = sf.openSession();
          Transaction transaction = session.beginTransaction(); 
@@ -18,6 +19,7 @@ public class UserDAO {
          transaction.commit();
          session.close();
          }
+	
 	public List<User>userlist(){
 		 Session session = sf.openSession();
 	     Transaction transaction = session.beginTransaction(); 
@@ -25,5 +27,13 @@ public class UserDAO {
 		 list= session.createCriteria(User.class).list();
          return list;
          }
-       
+	
+	public void update(User user) {
+		Session session = sf.openSession();
+        Transaction transaction = session.beginTransaction(); 
+        session.update(user);
+        transaction.commit();
+        session.close();
+	    }
+	
 }
